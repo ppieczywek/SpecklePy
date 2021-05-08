@@ -4,7 +4,7 @@
 
 Repository contains simple Python scripts, designed to demonstrate two techniques of laser speckle imaging. Scrips are based on OpenCV library. The general principle of the programs is to connect to the selected imaging device and start imaging the speckle activity in the live mode.
 
-FUJII.py - implementation of conventional Fujii algorithm
+FUJII.py - implementation of conventional Fujii algorithm </br>
 ESF.py - implementation of exponentially smoothed Fujii algorithm
 
 In brief, conventional Fujii coefficient is calculated from a arbitrary chosen number of captured video frames. Therefore, it requires to store a buffer of previously calculated values, which is updated by new data.
