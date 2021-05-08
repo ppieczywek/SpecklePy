@@ -27,15 +27,12 @@ ESF script runs in two separate windows - control window and preview window. Pre
 
 Trackbars description:
 
-MIN_GRAY  - pixel gray level threshold; pixels with gray level lower than MIN_GRAY will not be analyzed (only for ESF.py)
+* MIN_GRAY  - pixel gray level threshold; pixels with gray level lower than MIN_GRAY will not be analyzed (only for ESF.py)
 
-MIN_DIFF  - pixels minimum gray level difference between two consecutive frames; pixels which show changes in gray level lower than MIN_DIFF will not be analyzed (only for ESF.py)
-
-SCALE - maximal value of FUJII/ESF activity level; used to adjust color scale of output data (available for both ESF.py and FUJII.py)
-
-ACC_RATE - available only in case of ESF algorithm; adjust the frame accumulation rate of the exponentially moving average algorithm (only for ESF.py)
-
-OFF/ON - on/off switch between raw image and live processing mode (only for ESF.py)
+* MIN_DIFF  - pixels minimum gray level difference between two consecutive frames; pixels which show changes in gray level lower than MIN_DIFF will not be analyzed (only for ESF.py)
+* SCALE - maximal value of FUJII/ESF activity level; used to adjust color scale of output data (available for both ESF.py and FUJII.py)
+* ACC_RATE - available only in case of ESF algorithm; adjust the frame accumulation rate of the exponentially moving average algorithm (only for ESF.py)
+* OFF/ON - on/off switch between raw image and live processing mode (only for ESF.py)
 
 ## Script usage
 
