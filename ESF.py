@@ -7,16 +7,13 @@ device_id = 0
 def nothing(x):
     pass
 
+cv2.namedWindow('ESF_preview')
 cv2.namedWindow('Trackbars')
 cv2.createTrackbar('ACC_RATE','Trackbars',80,100,nothing)
 cv2.createTrackbar('MIN_GRAY','Trackbars',10,255,nothing)
 cv2.createTrackbar('MIN_DIFF','Trackbars',1,10,nothing)
 cv2.createTrackbar('SCALE','Trackbars',20,100,nothing)
-
-switch = 'OFF/ON'
-cv2.createTrackbar(switch, 'Trackbars',0,1,nothing)
-
-cv2.namedWindow('ESF_preview')
+cv2.createTrackbar('OFF/ON', 'Trackbars',0,1,nothing)
 
 cap = cv2.VideoCapture(device_id, cv2.CAP_DSHOW)
 cv2.waitKey(1500)
@@ -70,9 +67,7 @@ while(True):
             current_frame = cv2.cvtColor(current_frame, cv2.COLOR_BGR2GRAY)
 
         if s == 1:
-
             current_frame = current_frame.astype(np.float32) * (1.0/255.0)
-        
             sum = current_frame + previous_frame
             diff = cv2.absdiff(current_frame, previous_frame)
         
@@ -92,16 +87,13 @@ while(True):
             cv2.imshow('ESF_preview', im_color)
          
             previous_frame = current_frame.copy()
-
         else:
             cv2.imshow('ESF_preview', current_frame)
-
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     else:
         cap.release()
-
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
