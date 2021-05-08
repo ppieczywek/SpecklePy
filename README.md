@@ -40,7 +40,7 @@ Pressing "q" on keyboard terminates both scripts.
 
 Switching OFF/ON slider to position "1" turns on the live processing mode (for ESF.py).
 
-Before running the script set the correct value of the "device_id" variable. Setting this value to "0" means "connect with the first capturing device".  If you are using laptop with build-in webcam, then "0" refers to this camera. Any other device, such as USB external camera will have higher id numbers (1, 2 etc.).
+**Before running the script set the correct value of the "device_id" variable. Setting this value to "0" means "connect with the first capturing device".  If you are using laptop with build-in webcam, then "0" refers to this camera. Any other device, such as USB external camera will have higher id numbers (1, 2 etc.).**
 
 In case of FUJII.py you can adjust the size of frame buffer using "buffer_size" variable. The default value is 10 frames.
 
