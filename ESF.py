@@ -57,7 +57,7 @@ while(True):
     min_diff = value / 255.0
 
     value = cv2.getTrackbarPos('SCALE','Trackbars')
-    max_esf = 0.5 * ((value + 1.0) / 100.0)
+    max_esf = 0.25 * ((value + 1.0) / 100.0)
     scale_coeff = (1.0 / max_esf) * 255.0
 
     s = cv2.getTrackbarPos(switch,'Trackbars')
