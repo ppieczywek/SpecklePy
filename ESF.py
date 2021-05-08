@@ -57,7 +57,7 @@ while(True):
     max_esf = 0.25 * ((value + 1.0) / 100.0)
     scale_coeff = (1.0 / max_esf) * 255.0
 
-    s = cv2.getTrackbarPos(switch,'Trackbars')
+    s = cv2.getTrackbarPos('OFF/ON','Trackbars')
 
     ret, current_frame = cap.read()
 
