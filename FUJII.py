@@ -104,10 +104,6 @@ while(True):
          
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-        
-        if cv2.waitKey(33):
-            cv2.imwrite("snap.bmp", im_color)
-           
 
     else:
         cap.release()
