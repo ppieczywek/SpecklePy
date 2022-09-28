@@ -3,17 +3,15 @@ import sys, traceback
 import cv2
 
 
-device_id = 0
-def nothing(x):
-    pass
+device_id = 1
 
-cv2.namedWindow('ESF_preview')
-cv2.namedWindow('Trackbars')
-cv2.createTrackbar('ACC_RATE','Trackbars',80,100,nothing)
-cv2.createTrackbar('MIN_GRAY','Trackbars',10,255,nothing)
-cv2.createTrackbar('MIN_DIFF','Trackbars',1,10,nothing)
-cv2.createTrackbar('SCALE','Trackbars',20,100,nothing)
-cv2.createTrackbar('OFF/ON', 'Trackbars',0,1,nothing)
+cv2.namedWindow('Video preview')
+cv2.namedWindow('Control panel')
+cv2.createTrackbar('ACC_RATE', 'Control panel', 80, 100, lambda x: x)
+cv2.createTrackbar('MIN_GRAY', 'Control panel', 10, 255, lambda x: x)
+cv2.createTrackbar('MIN_DIFF', 'Control panel', 1, 10, lambda x: x)
+cv2.createTrackbar('SCALE', 'Control panel', 20, 100, lambda x: x)
+cv2.createTrackbar('OFF/ON', 'Control panel', 0, 1, lambda x: x)
 
 cap = cv2.VideoCapture(device_id, cv2.CAP_DSHOW)
 cv2.waitKey(1500)
@@ -44,20 +42,24 @@ weighted_esf = np.zeros((height,width,1), np.uint8)
 
 while(True):
 
-    value = cv2.getTrackbarPos('ACC_RATE','Trackbars')
-    acc_rate = value / 100.0
-    
-    value = cv2.getTrackbarPos('MIN_GRAY','Trackbars')
-    min_gray = value / 255.0
+    if cv2.getWindowProperty('Control panel', cv2.WND_PROP_VISIBLE) == 1:
+        value = cv2.getTrackbarPos('ACC_RATE', 'Control panel')
+        acc_rate = value / 100.0
 
-    value = cv2.getTrackbarPos('MIN_DIFF','Trackbars')
-    min_diff = value / 255.0
+        value = cv2.getTrackbarPos('MIN_GRAY', 'Control panel')
+        min_gray = value / 255.0
 
-    value = cv2.getTrackbarPos('SCALE','Trackbars')
-    max_esf = 0.25 * ((value + 1.0) / 100.0)
-    scale_coeff = (1.0 / max_esf) * 255.0
+        value = cv2.getTrackbarPos('MIN_DIFF', 'Control panel')
+        min_diff = value / 255.0
 
-    s = cv2.getTrackbarPos('OFF/ON','Trackbars')
+        value = cv2.getTrackbarPos('SCALE', 'Control panel')
+        max_esf = 0.25 * ((value + 1.0) / 100.0)
+        scale_coeff = (1.0 / max_esf) * 255.0
+
+        s = cv2.getTrackbarPos('OFF/ON', 'Control panel')
+    else:
+        cap.release()
+        break
 
     ret, current_frame = cap.read()
 
@@ -88,13 +90,13 @@ while(True):
          
             previous_frame = current_frame.copy()
         else:
-            cv2.imshow('ESF_preview', current_frame)
+            cv2.imshow('Video preview', current_frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     else:
         cap.release()
 
-cv2.waitKey(0)
+cap.release()
 cv2.destroyAllWindows()
 
