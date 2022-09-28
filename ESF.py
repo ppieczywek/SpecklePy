@@ -86,7 +86,7 @@ while(True):
 
             weighted_esf = cv2.addWeighted(weighted_esf, 1.0 - acc_rate, esf, acc_rate, gamma = 0)
             im_color = cv2.applyColorMap(weighted_esf, cv2.COLORMAP_JET)
-            cv2.imshow('ESF_preview', im_color)
+            cv2.imshow('Video preview', im_color)
          
             previous_frame = current_frame.copy()
         else:
