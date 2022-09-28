@@ -5,7 +5,7 @@ import cv2
 
 device_id = 1
 
-cv2.namedWindow('Video preview')
+cv2.namedWindow('Video preview', cv2.WINDOW_NORMAL)
 cv2.namedWindow('Control panel')
 cv2.createTrackbar('ACC_RATE', 'Control panel', 80, 100, lambda x: x)
 cv2.createTrackbar('MIN_GRAY', 'Control panel', 10, 255, lambda x: x)
