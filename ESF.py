@@ -1,6 +1,8 @@
 import numpy as np
-import sys, traceback
+import sys
 import cv2
+import platform
+import time
 
 
 device_id = 1
@@ -11,16 +13,30 @@ cv2.createTrackbar('ACC_RATE', 'Control panel', 80, 100, lambda x: x)
 cv2.createTrackbar('MIN_GRAY', 'Control panel', 10, 255, lambda x: x)
 cv2.createTrackbar('MIN_DIFF', 'Control panel', 1, 10, lambda x: x)
 cv2.createTrackbar('SCALE', 'Control panel', 20, 100, lambda x: x)
+cv2.createTrackbar('EXPOSURE', 'Control panel', 5, 13, lambda x: x)
+cv2.createTrackbar('GAIN', 'Control panel', 0, 740, lambda x: x)
 cv2.createTrackbar('OFF/ON', 'Control panel', 0, 1, lambda x: x)
 
-cap = cv2.VideoCapture(device_id, cv2.CAP_DSHOW)
-cv2.waitKey(1500)
-
-if cap.isOpened() == False:
+if platform.system() == "Darwin":
+    cap = cv2.VideoCapture(device_id)
+elif platform.system() == "Windows":
+    cap = cv2.VideoCapture(device_id, cv2.CAP_DSHOW)
+else:
     print("Unable to connect with selected capturing device")
     cv2.destroyAllWindows()
     sys.exit(0)
 
+
+cv2.waitKey(1500)
+
+if cap.isOpened() is False:
+    print("Unable to connect with selected capturing device")
+    cv2.destroyAllWindows()
+    sys.exit(0)
+
+cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.25)
+cap.set(cv2.CAP_PROP_EXPOSURE, -5)
+cap.set(cv2.CAP_PROP_GAIN, 260)
 
 ret, current_frame = cap.read()
 
@@ -39,6 +55,8 @@ if channels > 1:
 current_frame = current_frame.astype(np.float32) * (1.0 / 255.0)
 previous_frame = current_frame.copy()
 weighted_esf = np.zeros((height,width,1), np.uint8)
+exposure = -5
+gain = 0
 
 while(True):
 
@@ -55,6 +73,16 @@ while(True):
         value = cv2.getTrackbarPos('SCALE', 'Control panel')
         max_esf = 0.25 * ((value + 1.0) / 100.0)
         scale_coeff = (1.0 / max_esf) * 255.0
+         
+        value = cv2.getTrackbarPos('EXPOSURE', 'Control panel')
+        if -value != exposure:
+            exposure = -value
+            cap.set(cv2.CAP_PROP_EXPOSURE, exposure)
+
+        value = cv2.getTrackbarPos('GAIN', 'Control panel')
+        if value != gain:
+            gain = value
+            cap.set(cv2.CAP_PROP_GAIN, gain+260)
 
         s = cv2.getTrackbarPos('OFF/ON', 'Control panel')
     else:
@@ -94,6 +122,17 @@ while(True):
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+        
+        if cv2.waitKey(20) & 0xFF == ord('s'):
+            timestr = time.strftime("%Y%m%d_%H%M%S")
+            if s == 1:
+                filename = "speckle_map_" + timestr + ".tif"
+                cv2.imwrite(filename, im_color)
+            else:
+                filename = "raw_image_" + timestr + ".tif"
+                cv2.imwrite(filename, current_frame)
+                
+                
     else:
         cap.release()
 
