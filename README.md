@@ -30,7 +30,7 @@ Scripts allow to capture data as still images or videos. Recording starts by pre
 
 ### lasca_s.py
 
-Spript calculates speckle activity based on spatially resolved laser speckle contrast analysisi algorith (LASCA). Conrast is calculated as ratio of the standard deviation to the mean value of pixels intensities within local processing window. Size of processing window is controlled by "kernel_size" variable.
+Script calculates speckle activity based on spatially resolved laser speckle contrast analysisi algorith (LASCA). Conrast is calculated as ratio of the standard deviation to the mean value of pixels intensities within local processing window. Size of processing window is controlled by "kernel_size" variable.
 
 The lasca_s.py script runs in two separate windows - control window and preview window. Preview window shows processed or unprocessed video stream. Control window contains trackbars used to control the data processing.
 
