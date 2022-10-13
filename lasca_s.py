@@ -10,7 +10,8 @@ is_running = False
 start_time = 0
 
 font = cv2.FONT_HERSHEY_SIMPLEX
-kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5)).astype(np.float32)
+kernel_size = 5
+kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (kernel_size, kernel_size)).astype(np.float32)
 kernel /= np.sum(kernel)
 
 cv2.namedWindow('Video preview', cv2.WINDOW_NORMAL)
