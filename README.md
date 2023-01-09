@@ -54,3 +54,8 @@ Description of script specific trackbars:
 * MIN_DIFF  - minimum gray level difference between two consecutive frames; pixels which show changes in gray level lower than MIN_DIFF will not be analyzed
 * SCALE - used to scale values of the output speckle activity map
 * ACC_RATE - adjusts the data accumulation rate
+
+### video_to_lasca.py & image_to_lasca.py
+
+Both scripts take raw data stored as files and convert them to LASCA images. Video sequences saved in avi files or single images saved in tiff files can be processed. Variables "gray_threshold" and "max_value" are used to adjust gray level threshold and scale values of the output speckle activity maps, respectively. Size of processing window is controlled by "kernel_size" variable.
+
