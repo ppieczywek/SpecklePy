@@ -57,5 +57,5 @@ Description of script specific trackbars:
 
 ### video_to_lasca.py & image_to_lasca.py
 
-Both scripts take raw data stored as files and convert them to LASCA images. Video sequences saved in avi files or single images saved in tiff files can be processed. Variables "gray_threshold" and "max_value" are used to adjust gray level threshold and scale values of the output speckle activity maps, respectively. Size of processing window is controlled by "kernel_size" variable.
+Both scripts take raw data stored as files and convert them to LASCA images. Video sequences saved in avi files or single images saved in tiff files can be processed. Variables "gray_threshold" and "max_value" are used to adjust gray level threshold and scale values of the output speckle activity maps, respectively. Size of processing window is controlled by "kernel_size" variable. Processed data are saved to new files with the same name as the source file with the "LASCA" suffix.
 
