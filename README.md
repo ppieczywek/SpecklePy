@@ -4,6 +4,17 @@
 
 Repository contains simple Python scripts, designed to demonstrate techniques of laser speckle imaging. Scrips are based on OpenCV library. The general principle of the programs is to connect to capturing device and start imaging the speckle activity in the live mode.
 
+![Alt text](speckle_map.png "Example laser speckle image")
+
+Check out the youtube videos to see the code in action:
+* https://youtu.be/tu-ADk7vWzA
+* https://youtu.be/hikH4sCk0F4
+
+For more on the speckle imaging technique, see the publications below:
+* https://doi.org/10.1016/j.foodcont.2017.10.013
+* https://doi.org/10.1016/j.compag.2017.08.018
+* https://doi.org/10.1016/j.optlaseng.2013.06.017
+* http://www.mdpi.com/1424-8220/18/4/1093
 
 ## General description
 
